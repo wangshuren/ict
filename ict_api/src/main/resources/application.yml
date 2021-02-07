@@ -1,0 +1,29 @@
+## hystrix默认加载的配置文件  -  限流、熔断
+#hystrix:
+#  # 线程池大小
+#  threadpool:
+#    default:
+#      coreSize: 1
+#      maxQueueSize: 200
+#      queueSizeRejectionThreshold: 2
+#    # 限流策略
+#    # 如果没有定义HystrixThreadPoolKey,HystrixThreadPoolKey会默认定义为HystrixCommandGroupKey
+#    userGroup:
+#      coreSize: 1
+#      maxQueueSize: -1
+#      queueSizeRejectionThreshold: 800
+#
+#    userThreadPool:
+#      coreSize: 1
+#      maxQueueSize: -1
+#      queueSizeRejectionThreshold: 800
+#  # 执行策略
+#  # 资源隔离模式。默认thread 还有一种叫信号量
+#  command:
+#    default:
+#      execution:
+#        isolation:
+#          strategy: THREAD
+#        # 是否打开超时
+#        timeout:
+#          enable: true
