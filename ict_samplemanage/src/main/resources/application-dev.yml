@@ -1,0 +1,31 @@
+feign:
+  hystrix:
+    enabled: true
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        heart-beat-timeout: 5
+        ip-delete-timeout: 20
+        heart-beat-interval: 2
+ribbon:
+  eager-load:
+    enabled: true # 饥饿加载
+  MaxAutoRetries: 1 # 对当前实例的重试次数
+  MaxAutoRetriesNextServer: 2 # 切换实例的重试次数
+  ConnectTimeout: 1000 # 连接超时时间
+  ReadTimeout: 2000 # 读取超时时间
+
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 6000 # 路由转发时HystrixCommand执行的超时时间，执行超过该时间会进行服务降级处理
+
+logging:
+  level:
+    com.ict.api.user.RemoteUsercenterService: DEBUG

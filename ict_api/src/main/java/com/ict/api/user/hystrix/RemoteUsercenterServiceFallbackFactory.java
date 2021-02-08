@@ -1,12 +1,10 @@
 package com.ict.api.user.hystrix;
 
 import com.ict.api.user.RemoteUsercenterService;
-import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import feign.hystrix.FallbackFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
 import java.util.Map;

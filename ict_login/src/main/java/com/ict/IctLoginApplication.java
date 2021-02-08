@@ -1,4 +1,4 @@
-package com.ict.ict_login;
+package com.ict;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

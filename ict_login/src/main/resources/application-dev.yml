@@ -16,24 +16,21 @@ spring:
       username: root
       password: root
 
-      #é…ç½®åˆå§‹åŒ–å¤§å°/æœ€å°/æœ€å¤§
+      #ÅäÖÃ³õÊ¼»¯´óĞ¡/×îĞ¡/×î´ó
       initial-size: 5
       min-idle: 5
       max-active: 15
-      #è·å–è¿æ¥ç­‰å¾…è¶…æ—¶æ—¶é—´
+      #»ñÈ¡Á¬½ÓµÈ´ı³¬Ê±Ê±¼ä
       max-wait: 60000
-      #é—´éš”å¤šä¹…è¿›è¡Œä¸€æ¬¡æ£€æµ‹ï¼Œæ£€æµ‹éœ€è¦å…³é—­çš„ç©ºé—²è¿æ¥
+      #¼ä¸ô¶à¾Ã½øĞĞÒ»´Î¼ì²â£¬¼ì²âĞèÒª¹Ø±ÕµÄ¿ÕÏĞÁ¬½Ó
       time-between-eviction-runs-millis: 60000
-      #ä¸€ä¸ªè¿æ¥åœ¨æ± ä¸­æœ€å°ç”Ÿå­˜çš„æ—¶é—´
+      #Ò»¸öÁ¬½ÓÔÚ³ØÖĞ×îĞ¡Éú´æµÄÊ±¼ä
       min-evictable-idle-time-millis: 300000
       validation-query: SELECT NOW() FROM DUAL
       test-while-idle: true
       test-on-borrow: false
       test-on-return: false
-      #æ‰“å¼€PSCacheï¼Œå¹¶æŒ‡å®šæ¯ä¸ªè¿æ¥ä¸ŠPSCacheçš„å¤§å°ã€‚oracleè®¾ä¸ºtrueï¼Œmysqlè®¾ä¸ºfalseã€‚åˆ†åº“åˆ†è¡¨è¾ƒå¤šæ¨èè®¾ç½®ä¸ºfalse
+      #´ò¿ªPSCache£¬²¢Ö¸¶¨Ã¿¸öÁ¬½ÓÉÏPSCacheµÄ´óĞ¡¡£oracleÉèÎªtrue£¬mysqlÉèÎªfalse¡£·Ö¿â·Ö±í½Ï¶àÍÆ¼öÉèÖÃÎªfalse
       pool-prepared-statements: false
       max-pool-prepared-statement-per-connection-size: 20
 
-logging:
-  level:
-    com.ict.api.user.RemoteUsercenterService: DEBUG
