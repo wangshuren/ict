@@ -10,7 +10,7 @@
   </resultMap>
 
   <select id="selectListByPath" parameterType="java.lang.String" resultMap="BaseResultMap">
-    SELECT path.permission_code, path.permission_name FROM `sys_request_path` path
+    SELECT per.permission_code, per.permission_name FROM `sys_request_path` path
         LEFT JOIN `sys_request_path_permission_relation` rel ON path.id = rel.`url_id`
         LEFT JOIN `sys_permission` per ON rel.`permission_id` = per.`id`
     where path.url = #{url,jdbcType=VARCHAR}
