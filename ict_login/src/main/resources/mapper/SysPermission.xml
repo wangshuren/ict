@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ict.login.dao.SysPermissionDao">
+  <resultMap id="BaseResultMap" type="com.ict.login.entity.SysPermission">
+    <result column="description" jdbcType="VARCHAR" property="description" />
+    <result column="url" jdbcType="VARCHAR" property="url" />
+    <result column="permission_id" jdbcType="INTEGER" property="permissionId" />
+    <result column="permission_code" jdbcType="VARCHAR" property="permissionCode" />
+    <result column="permission_name" jdbcType="VARCHAR" property="permissionName" />
+  </resultMap>
+
+  <select id="selectListByPath" parameterType="java.lang.String" resultMap="BaseResultMap">
+    SELECT path.permission_code, path.permission_name FROM `sys_request_path` path
+        LEFT JOIN `sys_request_path_permission_relation` rel ON path.id = rel.`url_id`
+        LEFT JOIN `sys_permission` per ON rel.`permission_id` = per.`id`
+    where path.url = #{url,jdbcType=VARCHAR}
+  </select>
+</mapper>
