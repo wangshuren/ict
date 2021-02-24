@@ -1,0 +1,30 @@
+##规划gateWay注册到到nacos上的服务应用名称
+spring:
+  cloud:
+    nacos:
+      discovery:
+        #gateway工程注册到nacos上的地址
+        server-addr: localhost:8848
+    gateway:
+#      discovery:
+#        locator:
+#          #开启gateway从nacos上获取服务列表
+#          enabled: false
+      routes:
+        - id: usercenter #路由id,唯一
+          uri: lb://usercenter #usercenter
+          predicates:
+            - Path=/usercenter/** #以usercenter开头的请求都负载到consumer服务
+          filters:
+            - RewritePath=/usercenter/(?<segment>.*), /$\{segment} #过滤掉url里的city,例如http://ip:port/city/getCity -> http://ip:port/getCity
+
+##开启acutor端点
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: '*'
+#  endpoint:
+#    health:
+#      #打开端点详情
+#      show-details: always
