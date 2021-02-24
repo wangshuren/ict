@@ -20,6 +20,7 @@ public class UserController {
     @Autowired
     private IUserService userService;
 
+    // 用gateway调用地址为http://localhost:9201/usercenter/user/user/info?userId=1
     @GetMapping("/user/info")
     public TUserResponse getUserInfo(@RequestParam("userId")Integer userId) {
         return userService.getByUserId(userId);

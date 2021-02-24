@@ -117,22 +117,27 @@ public class WebSocketServer {
             for (Map.Entry<Session, String> entry : userIdSessionMap.entrySet()) {
                 if(id.equalsIgnoreCase(entry.getValue())) {
                     sessionList.add(entry.getKey());
-                }
-            }
-            if(sessionList.size() > 0) {
-                for (Session session : sessionList) {
                     try {
-                        session.getBasicRemote().sendText(message);//发送string
+                        entry.getKey().getBasicRemote().sendText(message);//发送string
                         log.info("推送用户【{}】消息成功，消息为：【{}】", id , message);
                     } catch (Exception e) {
                         log.info("推送用户【{}】消息失败，消息为：【{}】，原因是：【{}】", id , message, e.getMessage());
                     }
                 }
-            } else {
-                log.error("未找到当前id对应的session， id = {}", id);
             }
-        } else {
-            log.warn("当前无websocket连接");
+//            if(sessionList.size() > 0) {
+//                // 广播
+//                for (Session session : sessionList) {
+//                    try {
+//                        session.getBasicRemote().sendText(message);//发送string
+//                        log.info("推送用户【{}】消息成功，消息为：【{}】", id , message);
+//                    } catch (Exception e) {
+//                        log.info("推送用户【{}】消息失败，消息为：【{}】，原因是：【{}】", id , message, e.getMessage());
+//                    }
+//                }
+//            } else {
+//                log.error("未找到当前id对应的session， id = {}", id);
+//            }
         }
     }
 
