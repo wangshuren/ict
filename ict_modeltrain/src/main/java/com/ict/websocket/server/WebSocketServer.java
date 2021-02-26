@@ -31,27 +31,22 @@ import java.util.concurrent.atomic.AtomicInteger;
  * Map<String, List<String>> requestParameterMap = session.getRequestParameterMap();
  * // 获得 ?userId=123 这样的参数
  * @author bart
+ * @ServerEndpoint(value = "/websocket/{userId}",encoders = {WebSocketServer.MessageEncoder.class }) // 添加消息编码器
  */
+//@ServerEndpoint(value = "/websocket/{userId}",encoders = {WebSocketServer.MessageEncoder.class }) // 添加消息编码器
 @Component
-@ServerEndpoint(value = "/websocket/{userId}",encoders = {WebSocketServer.MessageEncoder.class }) // 添加消息编码器
-//@ServerEndpoint("/websocket/{userId}")
+@ServerEndpoint("/websocket/{userId}")
 public class WebSocketServer {
     final static Logger log = LoggerFactory.getLogger(WebSocketServer.class);
 
     //当前在线用户
     private static final AtomicInteger onlineCount = new AtomicInteger(0);
 
-
     // 当前登录用户的id和websocket session的map
     private static ConcurrentHashMap<Session, String> userIdSessionMap = new ConcurrentHashMap<>();
 
-    private Session session;
-
-    private String userId;
-
     /**
      * 连接开启时调用
-     *
      * @param userId
      * @param session
      */
@@ -110,7 +105,7 @@ public class WebSocketServer {
      * @param id 用户ID
      * @param message 发送的消息
      */
-    public void send(String id, String message) {
+    public void send1(String id, String message) {
         log.info("#### 点对点消息，userId={}", id);
         if(userIdSessionMap.size() > 0) {
             List<Session> sessionList = new ArrayList<>();
@@ -138,6 +133,36 @@ public class WebSocketServer {
 //            } else {
 //                log.error("未找到当前id对应的session， id = {}", id);
 //            }
+        }
+    }
+    /**
+     * 服务端发送信息给客户端
+     * @param id 用户ID
+     * @param message 发送的消息
+     */
+    public void send(String id, String message) {
+        log.info("#### 点对点消息，userId={}", id);
+        if(userIdSessionMap.size() > 0) {
+            List<Session> sessionList = new ArrayList<>();
+            for (Map.Entry<Session, String> entry : userIdSessionMap.entrySet()) {
+                if(id.equalsIgnoreCase(entry.getValue())) {
+                    sessionList.add(entry.getKey());
+                }
+            }
+            if(sessionList.size() > 0) {
+                for (Session session : sessionList) {
+                    try {
+                        session.getBasicRemote().sendText(message);//发送string
+                        log.info("推送用户【{}】消息成功，消息为：【{}】", id , message);
+                    } catch (Exception e) {
+                        log.info("推送用户【{}】消息失败，消息为：【{}】，原因是：【{}】", id , message, e.getMessage());
+                    }
+                }
+            } else {
+                log.error("未找到当前id对应的session， id = {}", id);
+            }
+        } else {
+            log.warn("当前无websocket连接");
         }
     }
 
