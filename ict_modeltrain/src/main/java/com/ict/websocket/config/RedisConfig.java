@@ -33,7 +33,6 @@ public class RedisConfig {
         return container;
     }
 
-
     /**
      * 添加自己的监听器到容器中（监听指定topic）
      * @param container
@@ -41,10 +40,8 @@ public class RedisConfig {
      * @return
      */
     @Bean
-    RedisTopicListener redisTopicListener(
-            RedisMessageListenerContainer container,
-            StringRedisTemplate stringRedisTemplate,
-            WarnMsgService warnMsgService) {
+    RedisTopicListener redisTopicListener(RedisMessageListenerContainer container,
+            StringRedisTemplate stringRedisTemplate,WarnMsgService warnMsgService) {
         // 指定监听的 topic
         RedisTopicListener redisTopicListener = new RedisTopicListener(container,
                 Arrays.asList(new ChannelTopic(RedisKeyConstants.REDIS_TOPIC_MSG)),

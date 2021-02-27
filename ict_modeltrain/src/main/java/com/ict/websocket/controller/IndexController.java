@@ -28,6 +28,6 @@ public class IndexController {
         String format = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
         warnMsg.setTitle(format);
         warnMsg.setBody("吃了没？");
-        warnMsgService.push(id, warnMsg);
+        warnMsgService.pushWithTopic(id, warnMsg);
     }
 }
