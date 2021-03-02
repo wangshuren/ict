@@ -1,0 +1,18 @@
+
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 127.0.0.1:8848
+        heart-beat-timeout: 25
+        ip-delete-timeout: 30
+        heart-beat-interval: 20
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    password:
+    jedis:
+      pool:
+        max-active: 3000
+        max-wait: 20
+        min-idle: 10
