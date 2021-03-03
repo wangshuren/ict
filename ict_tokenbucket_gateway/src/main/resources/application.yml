@@ -52,10 +52,19 @@ spring:
     gateway:
       routes:
         - id: modeltrain
-          uri: http://httpbin.org:80/get
+          uri: lb://modeltrain
           predicates:
             - Path=/modeltrain/**
           filters:
+            - RewritePath=/modeltrain/(?<segment>.*), /$\{segment} #过滤掉url里的modeltrain,例如http://ip:port/modeltrain/getCity -> http://ip:port/getCity
+        - id: usercenter
+          # lb代表从配置中心获取服务，且以负载均衡方式转发
+          uri: lb://usercenter
+          predicates:
+            # 以usercenter开头的请求都负载到usercenter服务
+            - Path=/usercenter/**
+          filters:
+            - RewritePath=/usercenter/(?<segment>.*), /$\{segment} #过滤掉url里的modeltrain,例如http://ip:port/modeltrain/getCity -> http://ip:port/getCity
             - name: RequestRateLimiter
               # RequestRateLimiter的限流过滤器，该过滤器需要配置三个参数
               # burstCapacity 令牌桶总数量
@@ -65,12 +74,4 @@ spring:
                 key-resolve: '#{@hostAddrKeyResolver}'
                 redis-rate-limiter.replenishRate: 1
                 redis-rate-limiter.burstCapacity: 5
-        - id: usercenter
-          # lb代表从配置中心获取服务，且以负载均衡方式转发
-          uri: lb://usercenter
-          predicates:
-            # 以usercenter开头的请求都负载到usercenter服务
-            - Path=/usercenter/**
-          filters:
-            args:
-              maxSize: 5000000 # 5000kb 不设置这个filter，默认限制5M的请求大小。
+
