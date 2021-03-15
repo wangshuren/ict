@@ -2,14 +2,6 @@ feign:
   hystrix:
     enabled: true
 
-spring:
-  cloud:
-    nacos:
-      discovery:
-        server-addr: 127.0.0.1:8848
-        heart-beat-timeout: 5
-        ip-delete-timeout: 20
-        heart-beat-interval: 2
 ribbon:
   eager-load:
     enabled: true # 饥饿加载
