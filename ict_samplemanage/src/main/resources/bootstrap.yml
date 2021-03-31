@@ -14,10 +14,26 @@ spring:
         server-addr: 127.0.0.1:8848
       config:
         server-addr: 127.0.0.1:8848
-        file-extension: yml  # 必须修改成yaml
-        group: DEFAULT_GROUP  # 缺省即可
-        prefix: ${spring.application.name} # 缺省即可
-
+        file-extension: yaml  # 必须修改成yaml
+        group: ${spring.profiles.active}  # 缺省即可
+        ext-config[0]:
+          group: ${spring.profiles.active}
+          data-id: samplemanage.yaml
+          refresh: true
+        ext-config[1]:
+          group: ${spring.profiles.active}
+          data-id: test.yaml
+          refresh: true
+        ext-config[2]:
+          group: ${spring.profiles.active}
+          data-id: test2.yaml
+          refresh: true
+        namespace: d050d4f8-aa3f-4183-becd-4d3147bbc7d9  # public不需配置
+#        prefix: ${spring.application.name} # 缺省即可
+# 负载均衡
+nacos-restful-provider:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml
