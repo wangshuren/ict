@@ -20,7 +20,8 @@
 		<module>ict_systemmanage</module>
 		<module>ict_api</module>
 		<module>ict_tokenbucket_gateway</module>
-	</modules>
+        <module>ict-common</module>
+    </modules>
 	<properties>
 		<java.version>1.8</java.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>

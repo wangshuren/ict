@@ -26,6 +26,21 @@
             <artifactId>spring-boot-starter-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <dependency>
+            <groupId>com.ict</groupId>
+            <artifactId>ict-common</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>com.ict</groupId>
+            <artifactId>ict-common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-context</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
