@@ -5,9 +5,6 @@ package com.ict.login.common;
  * @Description: 返回码定义
  * 规定:
  * #1表示成功
- * #1001～1999 区间表示参数错误
- * #2001～2999 区间表示用户错误
- * #3001～3999 区间表示接口异常
  * @Date Create in 2021/08/08 14:28
  */
 public enum ResultCode {
