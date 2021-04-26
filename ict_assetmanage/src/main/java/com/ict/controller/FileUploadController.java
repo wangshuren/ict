@@ -1,12 +1,13 @@
 package com.ict.controller;
 
+import com.ict.base.BaseResponse;
+import com.ict.base.BaseResponseUtil;
 import com.ict.service.FileOperateUtil;
 import com.ict.service.RedisUtil;
 import com.ict.service.TaskService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,10 +55,10 @@ public class FileUploadController {
 
     @ApiOperation(value = "es存入数据测试", httpMethod = "POST")
     @PostMapping(value = {"/estest"},produces="application/json;charset=UTF-8")
-    public String esTest() throws Exception {
+    public BaseResponse<String> esTest() throws Exception {
         // 测试es
         taskService.elasticsearchTest();
-        return "测试成功";
+        return BaseResponseUtil.success("测试成功");
     }
 
     @ApiOperation(value = "es查询数据测试", httpMethod = "POST")
