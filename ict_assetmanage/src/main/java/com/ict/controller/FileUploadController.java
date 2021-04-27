@@ -49,7 +49,6 @@ public class FileUploadController {
     public String redisTest() throws Exception {
         redisUtil.set("tessss", "这是一个测试");
         // 测试es
-        taskService.elasticsearchTest();
         return "上传成功";
     }
 
