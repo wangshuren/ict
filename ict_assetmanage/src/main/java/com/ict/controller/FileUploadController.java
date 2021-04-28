@@ -1,5 +1,6 @@
 package com.ict.controller;
 
+import com.ict.annotation.Token;
 import com.ict.base.BaseResponse;
 import com.ict.base.BaseResponseUtil;
 import com.ict.service.FileOperateUtil;
@@ -46,6 +47,7 @@ public class FileUploadController {
 
     @ApiOperation(value = "redis测试", httpMethod = "POST")
     @PostMapping(value = {"/redis"},produces="application/json;charset=UTF-8")
+    @Token
     public String redisTest() throws Exception {
         redisUtil.set("tessss", "这是一个测试");
         // 测试es

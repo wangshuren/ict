@@ -1,18 +1,17 @@
-package com.ict.util;
+package com.ict.interceptor;
 
 import org.springframework.stereotype.Component;
 
 import java.util.UUID;
 
 /**
- * @Description: 缓存token
+ * @Description:
  * @Author wangsr
  * @Date 2021/4/27
  * @Version 1.0
  */
-//@Component
-public class TokenCache {
-    private static final ThreadLocal<String> TOKEN_THREAD_LOCAL = new ThreadLocal<>();
+@Component
+public class TokenCache {private static final ThreadLocal<String> TOKEN_THREAD_LOCAL = new ThreadLocal<>();
     private static final String ICT_LOGIN_KEY = "ict-token-";
 
     /**
@@ -49,4 +48,5 @@ public class TokenCache {
     public static void remove() {
         TOKEN_THREAD_LOCAL.remove();
     }
+
 }

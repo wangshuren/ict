@@ -11,7 +11,7 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupp
  * @Date 2021/4/27
  * @Version 1.0
  */
-@Configuration
+//@Configuration // 自定义注解
 public class WebConfig extends WebMvcConfigurationSupport  {
     @Bean
     public TokenInterceptor getTokenInterceptor() {
