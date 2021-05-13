@@ -23,9 +23,10 @@ public class SendMessageService {
      * @param channel 订阅的频道
      * @param message 发布 的内容
      */
-    public void sendMessage(String channel, String message) {
+    public String sendMessage(String channel, String message) {
 
         redisTemplate.convertAndSend(channel, message);
         System.out.println("您已经向频道：" + channel + "发布了一条消息，内容是： " + message);
+        return "";
     }
 }

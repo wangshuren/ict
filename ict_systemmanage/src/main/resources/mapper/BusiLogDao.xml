@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ict.dao.BusiLogDao">
+  <resultMap id="BaseResultMap" type="com.ict.entity.model.BusiLog">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="op_user_id" jdbcType="INTEGER" property="opUserId" />
+    <result column="op_user_name" jdbcType="CHAR" property="opUserName" />
+    <result column="busi_name" jdbcType="VARCHAR" property="busiName" />
+    <result column="busi_op" jdbcType="VARCHAR" property="busiOp" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="create_user_id" jdbcType="INTEGER" property="createUserId" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, op_user_id, op_user_name, busi_name, busi_op, `status`, create_time, create_user_id
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from busi_log
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from busi_log
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="com.ict.entity.model.BusiLog" useGeneratedKeys="true">
+    insert into busi_log (op_user_id, op_user_name, busi_name, 
+      busi_op, `status`, create_time, 
+      create_user_id)
+    values (#{opUserId,jdbcType=INTEGER}, #{opUserName,jdbcType=CHAR}, #{busiName,jdbcType=VARCHAR}, 
+      #{busiOp,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, now(),
+      #{createUserId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" keyColumn="id" keyProperty="id" parameterType="com.ict.entity.model.BusiLog" useGeneratedKeys="true">
+    insert into busi_log
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="opUserId != null">
+        op_user_id,
+      </if>
+      <if test="opUserName != null">
+        op_user_name,
+      </if>
+      <if test="busiName != null">
+        busi_name,
+      </if>
+      <if test="busiOp != null">
+        busi_op,
+      </if>
+      <if test="status != null">
+        `status`,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="createUserId != null">
+        create_user_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="opUserId != null">
+        #{opUserId,jdbcType=INTEGER},
+      </if>
+      <if test="opUserName != null">
+        #{opUserName,jdbcType=CHAR},
+      </if>
+      <if test="busiName != null">
+        #{busiName,jdbcType=VARCHAR},
+      </if>
+      <if test="busiOp != null">
+        #{busiOp,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        #{createUserId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.ict.entity.model.BusiLog">
+    update busi_log
+    <set>
+      <if test="opUserId != null">
+        op_user_id = #{opUserId,jdbcType=INTEGER},
+      </if>
+      <if test="opUserName != null">
+        op_user_name = #{opUserName,jdbcType=CHAR},
+      </if>
+      <if test="busiName != null">
+        busi_name = #{busiName,jdbcType=VARCHAR},
+      </if>
+      <if test="busiOp != null">
+        busi_op = #{busiOp,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null">
+        `status` = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null">
+        create_user_id = #{createUserId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.ict.entity.model.BusiLog">
+    update busi_log
+    set op_user_id = #{opUserId,jdbcType=INTEGER},
+      op_user_name = #{opUserName,jdbcType=CHAR},
+      busi_name = #{busiName,jdbcType=VARCHAR},
+      busi_op = #{busiOp,jdbcType=VARCHAR},
+      `status` = #{status,jdbcType=TINYINT},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -2,6 +2,7 @@ package com.ict.controller;
 
 import com.ict.service.SendMessageService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -17,7 +18,7 @@ public class RedisPubController {
     @Autowired
     private SendMessageService sendMessageService;
 
-    @RequestMapping("/pub")
+    @GetMapping("/pub")
     public void test() throws InterruptedException {
         sendMessageService.sendMessage("TOPIC", "这是一个测试");
         Thread.sleep(1000);

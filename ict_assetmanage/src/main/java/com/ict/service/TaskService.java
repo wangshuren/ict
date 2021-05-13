@@ -48,6 +48,7 @@ public class TaskService {
     @Autowired
     private ElasticSearchServer elasticSearchServer;
 
+
     public void elasticsearchTest() throws IOException {
         // 查询所有数据
         List<IctDict> dictList = ictDictDao.selectDicts();

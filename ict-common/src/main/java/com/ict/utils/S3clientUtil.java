@@ -21,7 +21,7 @@ import java.util.Objects;
  * @Date 2021/4/19
  * @Version 1.0
  */
-@Component
+//@Component
 public class S3clientUtil {
     private AmazonS3 amazonS3 = MinioConfig.getS3client();
 

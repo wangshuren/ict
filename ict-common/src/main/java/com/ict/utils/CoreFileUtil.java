@@ -10,8 +10,8 @@ import org.springframework.context.annotation.Configuration;
  * @Date 2021/4/19
  * @Version 1.0
  */
-@Configuration
-@EnableAutoConfiguration
+//@Configuration
+//@EnableAutoConfiguration
 public class CoreFileUtil {
     /**
      * 自定义配置属性
