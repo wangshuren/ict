@@ -1,6 +1,5 @@
 package com.ict.service;
 
-import com.ict.dao.BusiLogDao;
 import com.ict.entity.model.BusiLog;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

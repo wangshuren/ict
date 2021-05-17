@@ -12,7 +12,6 @@ import java.lang.annotation.*;
 @Retention(RetentionPolicy.RUNTIME)
 @Documented
 public @interface BusiLogAnno {
-    String oprName() default "";
     String busiName() default "";
     String busiOp() default "";
     Class remarkClass() default com.ict.entity.model.BusiLog.class;

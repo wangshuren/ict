@@ -10,7 +10,7 @@ import lombok.Data;
  */
 @Data
 public class BusiLog {
-    private Integer id;
+    private String id;
 
     private Integer opUserId;
 

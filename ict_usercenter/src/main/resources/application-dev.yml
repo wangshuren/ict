@@ -37,3 +37,9 @@ spring:
 logging:
   level:
     com.ict.api.user.RemoteUsercenterService: DEBUG
+
+#elasticsearch 配置
+es:
+  host: 127.0.0.1
+  port: 9200
+  schene: http
