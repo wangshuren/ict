@@ -6,6 +6,7 @@ import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.AfterReturning;
 import org.aspectj.lang.annotation.AfterThrowing;
 import org.aspectj.lang.annotation.Aspect;
+import org.aspectj.lang.annotation.Before;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,14 @@ public class BusiLogAspect {
 
     @Autowired
     private HttpServletRequest httpServletRequest;
+
+//    @Before(value = "@annotation(businessLog)")
+//    public void addAttribute(JoinPoint joinPoit, BusiLogAnno businessLog) throws Exception {
+//        String uuid = UUID.randomUUID().toString().replace("-", "");
+//        log.info("添logId:{}," + uuid);
+//        httpServletRequest.setAttribute("logId", uuid);
+//    }
+
 
     @AfterReturning(value = "@annotation(busiLog)")
     public void saveUserLog(JoinPoint joinPoit, BusiLogAnno busiLog) throws Exception {
@@ -58,9 +67,9 @@ public class BusiLogAspect {
         try {
             com.ict.entity.model.BusiLog logrem = new com.ict.entity.model.BusiLog();
             String token = httpServletRequest.getHeader("token");
-            httpServletRequest.setAttribute("logId", "12545454545454545454");
 
             logrem.setBusiOp(busiLog.busiOp());
+            logrem.setBusiOp(busiLog.busiName());
             logrem.setCreateUserId(1);
             logrem.setOpUserId(1);
             logrem.setOpUserName("admin");

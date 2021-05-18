@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class LogTestController {
 
     @GetMapping("/test")
-    @BusiLogAnno(oprName="修改权限",busiName="用户权限", busiOp="修改", remarkClass=LogTestController.class)
+    @BusiLogAnno(busiName="用户权限", busiOp="修改", remarkClass=LogTestController.class)
     public void testLog() {
         int a = 1/0;
         System.out.println("日志测试");
