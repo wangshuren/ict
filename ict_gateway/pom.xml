@@ -12,6 +12,9 @@
     <version>0.0.1-SNAPSHOT</version>
     <name>ict_gateway</name>
     <description>Demo project for Spring Boot</description>
+
+    <packaging>jar</packaging>
+
     <properties>
         <java.version>1.8</java.version>
     </properties>
@@ -35,13 +38,22 @@
             <artifactId>bucket4j-core</artifactId>
             <version>4.3.0</version>
         </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${org.projectlombok.version}</version>
+        </dependency>
     </dependencies>
 
     <build>
         <plugins>
+            <!-- Srping Boot 打包工具 打包成可执行的jar  -->
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <includeSystemScope>true</includeSystemScope>
+                </configuration>
             </plugin>
         </plugins>
     </build>

@@ -37,7 +37,7 @@ server:
   port: 9011
 spring:
   application:
-    name: gateway-server
+    name: gateway-server-2
   redis:
     host: 127.0.0.1
     port: 6379

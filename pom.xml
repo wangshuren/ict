@@ -19,6 +19,7 @@
 		<module>ict_workspace</module>
 		<module>ict_systemmanage</module>
 		<module>ict_api</module>
+		<module>ict_gateway</module>
 		<module>ict_tokenbucket_gateway</module>
         <module>ict-common</module>
     </modules>

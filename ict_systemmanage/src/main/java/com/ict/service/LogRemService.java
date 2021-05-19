@@ -12,11 +12,11 @@ import org.springframework.stereotype.Service;
  */
 @Service
 public class LogRemService {
-    @Autowired
-    private BusiLogDao busiLogDao;
-
-    public String operatorBusiLog(BusiLog busiLog) {
-        busiLogDao.insert(busiLog);
-        return "新增成功";
-    }
+//    @Autowired
+//    private BusiLogDao busiLogDao;
+//
+//    public String operatorBusiLog(BusiLog busiLog) {
+//        busiLogDao.insert(busiLog);
+//        return "新增成功";
+//    }
 }
