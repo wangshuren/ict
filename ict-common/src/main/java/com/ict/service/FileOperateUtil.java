@@ -26,7 +26,7 @@ import java.util.UUID;
  * @Date 2021/4/19
  * @Version 1.0
  */
-//@Component
+@Component
 public class FileOperateUtil {
     private static final Logger logger = LoggerFactory.getLogger(FileOperateUtil.class);
 

@@ -14,7 +14,7 @@ import org.springframework.stereotype.Component;
 @Component
 @Aspect
 public class MyAnnotationAspect {
-    @Pointcut("@annotation(com.ict.myaopannotation.Myannotation)")
+    @Pointcut("@annotation(com.ict.myaopannotation.MyAnnotation)")
     public void myAnnotation(){}
 
     /**
