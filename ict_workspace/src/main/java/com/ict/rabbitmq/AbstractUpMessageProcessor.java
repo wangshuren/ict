@@ -6,9 +6,7 @@ import com.ict.common.Constants;
 import com.ict.handler.BaseMessageHandler;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.util.StringUtils;
 
-import java.util.List;
 import java.util.Map;
 
 /**
@@ -37,40 +35,7 @@ public abstract class AbstractUpMessageProcessor extends BaseMessageHandler {
         long startTime = System.currentTimeMillis();
         String msgId = null;
         try {
-
-//            // 校验接收的消息
-//            checkMqMsg(messageStr);
-//
-//            // 校验传入的属性
-//            checkMqAttr(attrMap);
-
-            JSONObject messageJson = JSONUtil.parseObj(messageStr);
-            String protocolVersion = (String) attrMap.get(Constants.RABBIT_MSG_ATTR_TPPID);
-            String sourceMqttTopic = (String) attrMap.get(Constants.RABBIT_MSG_ATTR_TOPIC);
-
-//            // wulian/icam 协议处理逻辑
-//            if (Partner.WULIAN.getPartnerId().equals(protocolVersion) || Partner.ICAM.getPartnerId().equals(protocolVersion)
-//                    || Partner.WULIAN_INFRARED.getPartnerId().equals(protocolVersion)) {
-//
-//                int pushType = getPushType(messageJson);
-//
-//                int qos = getQos(messageJson);
-//
-//                List<PushPartnerBO> pushPartnerList = getUserList(pushType, messageJson);
-//
-//                msgId = DigestUtils.md5Hex(messageStr);
-//                for (PushPartnerBO pushPartner : pushPartnerList) {
-//                    send(pushPartner, messageJson, sourceMqttTopic, qos, msgId);
-//                }
-//
-//                postHandle(messageJson);
-//            } else if (Partner.WULIAN_SAFE_DOG.getPartnerId().equals(protocolVersion)) {
-//
-//                // 安全狗协议的处理逻辑
-//                safeDogProtocolHanler(sourceMqttTopic, messageJson);
-//            } else if (TppIdConstants.TPPID_WLINK.equals(protocolVersion)) {
-//                wlinkProtocolHanler(sourceMqttTopic, messageJson);
-//            }
+            //业务处理
 
         } catch (Exception e) {
             LOGGER.error("recieve msg from rabbitmq error,queue={},msgId={},message={},attr={},timecost(ms)={}", queueName, msgId, messageStr, JSONUtil.toJsonStr(attrMap), (System.currentTimeMillis() - startTime), e);
