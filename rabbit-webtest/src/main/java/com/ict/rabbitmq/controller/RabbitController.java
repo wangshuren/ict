@@ -20,7 +20,7 @@ public class RabbitController {
 
     @GetMapping("/sendMessage")
     public void testRa() throws Exception {
-        rabbitmqService.testRa();
+        rabbitmqService.topicProduct();
     }
 
 }
