@@ -4,6 +4,17 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+/**
+ * 消息确认种类（事务机制、批量确认、异步确认）
+ * 事务机制
+ *      我们在channel对象中可以看到 txSelect(),txCommit(),txrollback() 这些方法，分别对应着开启事务，提交事务，回滚。由于使用事务会造成生产者与Broker交互次数增加，造成性能资源的浪费，而且事务机制是阻塞的，在发送一条消息后需要等待RabbitMq回应，之后才能发送下一条，因此事务机制不提倡，大家在网上也很少看到RabbitMq使用事务进行消息确认的。
+ * 批量确认
+ *      批量其实是一个节约资源的操作，但是在RabbitMq中我们使用批量操作会造成消息重复消费，原因是批量操作是使客户端程序定期或者消息达到一定量，来调用方法等待Broker返回，这样其实是一个提高效率的做法，但是如果出现消息重发的情况，当前这批次的消息都需要重发，这就造成了重复消费，因此批量确认的操作性能没有提高反而下降
+ * 异步确认（使用）
+ *      异步确认虽然编程逻辑比上两个要复杂，但是性价比最高，无论是可靠性还是效率都没得说，他是利用回调函数来达到消息可靠性传递的，笔者接触过RocketMq，这个中间件也是通过函数回调来保证是否投递成功，下面就让我们来详细讲解异步确认是怎么实现的
+ *
+ *
+ */
 
 /**
  * @author ：wangsr
@@ -104,4 +115,15 @@ public class RabbitmqService {
         }
 
     }
+
+    /**
+     *  Headers exchange
+     *  不处理路由键。而是根据发送的消息内容中的headers属性进行匹配。在绑定Queue与Exchange时指定一组键值对；当消息发送到RabbitMQ时会取到该消息的headers与Exchange绑定时指定的键值对进行匹配；如果完全匹配则消息会路由到该队列，否则不会路由到该队列。headers属性是一个键值对，可以是Hashtable，键值对的值可以是任何类型。而fanout，direct，topic 的路由键都需要要字符串形式的。
+     *
+     * 匹配规则x-match有下列两种类型：
+     *
+     * x-match = all ：表示所有的键值对都匹配才能接受到消息
+     *
+     * x-match = any ：表示只要有键值对匹配就能接受到消息
+     */
 }
