@@ -6,8 +6,8 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class RabbitWebtestApplication {
 
-    public static void main(String[] args) {
-        SpringApplication.run(RabbitWebtestApplication.class, args);
-    }
+	public static void main(String[] args) {
+		SpringApplication.run(RabbitWebtestApplication.class, args);
+	}
 
 }
